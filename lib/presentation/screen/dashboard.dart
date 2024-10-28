@@ -112,16 +112,21 @@ class Dashboard extends StatelessWidget {
               SizedBox(
                 width: 12,
               ),
-              Column(
-                children: [
-                  Image.asset("assets/images/ic_menu_zakat.png"),
-                  Text("Zakat",
-                      style: TextStyle(
-                        fontFamily: "PoppinsSemiBold",
-                        fontSize: 14,
-                        color: ColorApp.white,
-                      )),
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/zakat');
+                },
+                child: Column(
+                  children: [
+                    Image.asset("assets/images/ic_menu_zakat.png"),
+                    Text("Zakat",
+                        style: TextStyle(
+                          fontFamily: "PoppinsSemiBold",
+                          fontSize: 14,
+                          color: ColorApp.white,
+                        )),
+                  ],
+                ),
               ),
               SizedBox(
                 width: 12,
