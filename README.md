@@ -1,16 +1,16 @@
 # Bittaqwa Islamic Dashboard App
 
-A new Flutter project.
+Bittaqwa is an Islamic Dashboard App developed using the Flutter framework. This is my first Flutter project, and I would greatly appreciate any feedback or suggestions to help improve it!
 
-## Getting Started
+## About
+If you'd like to explore or modify the code, please navigate to **_Bittaqwa-Islamic-Dashboard-App > lib_**.
 
-This project is a starting point for a Flutter application.
+### Dependencies & Libraries Used
 
-A few resources to get you started if this is your first Flutter project:
+This project relies on the following dependencies:
+- `cupertino_icons: ^1.0.8`
+- `flutter_masked_text2: ^0.9.1`
+- `intl: ^0.19.0`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Assets
+All assets can be accessed in the **_assets_** folder. I’ve incorporated external fonts, like Poppins, which are registered in **_pubspec.yaml_**. Additionally, a custom color palette is available in **_lib > utils > colors.dart_** for consistent styling.
