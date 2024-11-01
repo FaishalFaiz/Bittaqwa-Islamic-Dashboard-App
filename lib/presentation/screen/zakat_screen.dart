@@ -9,27 +9,22 @@ class ZakatScreen extends StatefulWidget {
   @override
   State<ZakatScreen> createState() => _ZakatScreenState();
 }
-
+// Contoller for the Text form feld, using intl depedencies
 class _ZakatScreenState extends State<ZakatScreen> {
-  // Controler biar text ada titik titik (belum ada depedencies)
   final MoneyMaskedTextController moneyController = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
   );
 
-  // variabel untuk kalkulasi
+  // variable for the logic
   double totalHarta = 0;
-
   double zakatDikeluarkan = 0;
-
   final double minimumHarta = 85000000;
-
   String formattedHarta = "";
-
   String formattedZakatDikeluarkan = "";
 
-  // function untuk hitungnya
+  // Calculating function
   void HitungZakat() {
     String cleanStringValue = moneyController.text.replaceAll(".", "");
     // ngubah dari string ke double
@@ -68,6 +63,7 @@ class _ZakatScreenState extends State<ZakatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // widget used
     Widget CardHarta() {
       return Container(
         margin: EdgeInsets.all(24),
@@ -128,7 +124,6 @@ class _ZakatScreenState extends State<ZakatScreen> {
         ),
       );
     }
-
     Widget CardResult() {
       return SingleChildScrollView(
         padding: EdgeInsets.only(left: 40, right: 40),

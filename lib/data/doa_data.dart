@@ -1,3 +1,5 @@
+// data for Doa Screen
+
 List<Map<String, String>> getDoaList(String category) {
   switch (category) {
     case "Makanan & Minuman":
