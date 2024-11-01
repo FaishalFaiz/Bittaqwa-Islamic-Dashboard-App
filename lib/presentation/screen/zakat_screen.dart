@@ -1,8 +1,70 @@
 import 'package:bitaqwa_app/utils/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+import 'package:intl/intl.dart';
 
-class ZakatScreen extends StatelessWidget {
-  const ZakatScreen({super.key});
+class ZakatScreen extends StatefulWidget {
+  ZakatScreen({super.key});
+
+  @override
+  State<ZakatScreen> createState() => _ZakatScreenState();
+}
+
+class _ZakatScreenState extends State<ZakatScreen> {
+  // Controler biar text ada titik titik (belum ada depedencies)
+  final MoneyMaskedTextController moneyController = MoneyMaskedTextController(
+    thousandSeparator: '.',
+    decimalSeparator: '',
+    precision: 0,
+  );
+
+  // variabel untuk kalkulasi
+  double totalHarta = 0;
+
+  double zakatDikeluarkan = 0;
+
+  final double minimumHarta = 85000000;
+
+  String formattedHarta = "";
+
+  String formattedZakatDikeluarkan = "";
+
+  // function untuk hitungnya
+  void HitungZakat() {
+    String cleanStringValue = moneyController.text.replaceAll(".", "");
+    // ngubah dari string ke double
+    double inputValue = double.tryParse(cleanStringValue) ?? 0;
+
+    if (inputValue >= minimumHarta) {
+      setState(() {
+        totalHarta = inputValue;
+        zakatDikeluarkan = (inputValue * 2.5) / 100;
+
+        // format hasilnya
+        formattedHarta = NumberFormat.currency(locale: 'id_ID', symbol: '')
+            .format(totalHarta);
+        formattedZakatDikeluarkan =
+            NumberFormat.currency(locale: 'id_ID', symbol: '')
+                .format(zakatDikeluarkan);
+      });
+    } else {
+      // kalau harta kurang dari minimum
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Peringatan"),
+          content: Text("Anda tidak wajib berzakat"),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.close))
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +90,8 @@ class ZakatScreen extends StatelessWidget {
               height: 16,
             ),
             TextFormField(
+              keyboardType: TextInputType.number,
+              controller: moneyController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -47,7 +111,9 @@ class ZakatScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                HitungZakat();
+              },
               child: Text("Ok"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorApp.primary,
@@ -64,71 +130,75 @@ class ZakatScreen extends StatelessWidget {
     }
 
     Widget CardResult() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 16,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.red[300]!,
-            ),
-            child: Column(
-              children: [
-                Text(
-                  "Total Uang",
-                  style: TextStyle(
-                    fontFamily: "PoppinsMedium",
-                    color: ColorApp.white,
+      return SingleChildScrollView(
+        padding: EdgeInsets.only(left: 40, right: 40),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 16,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.red[300]!,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    "Total Uang",
+                    style: TextStyle(
+                      fontFamily: "PoppinsMedium",
+                      color: ColorApp.white,
+                    ),
                   ),
-                ),
-                SizedBox(height: 32),
-                Text(
-                  "Rp. 0",
-                  style: TextStyle(
-                    fontFamily: "PoppinsMedium",
-                    color: ColorApp.white,
+                  SizedBox(height: 32),
+                  Text(
+                    "Rp. ${formattedHarta}",
+                    style: TextStyle(
+                      fontFamily: "PoppinsMedium",
+                      color: ColorApp.white,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            width: 12,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 16,
+            SizedBox(
+              width: 12,
             ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.purple,
-            ),
-            child: Column(
-              children: [
-                Text(
-                  "Zakat Dikeluarkan",
-                  style: TextStyle(
-                    fontFamily: "PoppinsMedium",
-                    color: ColorApp.white,
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 16,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.purple,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    "Zakat Dikeluarkan",
+                    style: TextStyle(
+                      fontFamily: "PoppinsMedium",
+                      color: ColorApp.white,
+                    ),
                   ),
-                ),
-                SizedBox(height: 32),
-                Text(
-                  "Rp. 0",
-                  style: TextStyle(
-                    fontFamily: "PoppinsMedium",
-                    color: ColorApp.white,
+                  SizedBox(height: 32),
+                  Text(
+                    "Rp. ${formattedZakatDikeluarkan}",
+                    style: TextStyle(
+                      fontFamily: "PoppinsMedium",
+                      color: ColorApp.white,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
 
@@ -154,7 +224,9 @@ class ZakatScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Image.asset("assets/images/bg_header_zakat.png"),
+          Image.asset(
+            "assets/images/bg_header_zakat.png",
+          ),
           CardHarta(),
           CardResult(),
         ],
