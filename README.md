@@ -1,4 +1,4 @@
-# bitaqwa_app
+# Bittaqwa Islamic Dashboard App
 
 A new Flutter project.
 
