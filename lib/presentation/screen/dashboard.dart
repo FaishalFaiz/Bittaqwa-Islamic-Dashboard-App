@@ -6,7 +6,6 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // widget used
     Widget Header() {
       return Container(
@@ -133,30 +132,37 @@ class Dashboard extends StatelessWidget {
               SizedBox(
                 width: 12,
               ),
-              Column(
-                children: [
-                  Image.asset("assets/images/ic_menu_video_kajian.png"),
-                  Text("Video Kajian",
-                      style: TextStyle(
-                        fontFamily: "PoppinsSemiBold",
-                        fontSize: 14,
-                        color: ColorApp.white,
-                      )),
-                ],
+              GestureDetector(
+                child: Column(
+                  children: [
+                    Image.asset("assets/images/ic_menu_video_kajian.png"),
+                    Text("Video Kajian",
+                        style: TextStyle(
+                          fontFamily: "PoppinsSemiBold",
+                          fontSize: 14,
+                          color: ColorApp.white,
+                        )),
+                  ],
+                ),
               ),
               SizedBox(
                 width: 12,
               ),
-              Column(
-                children: [
-                  Image.asset("assets/images/ic_menu_jadwal_sholat.png"),
-                  Text("Jadwal Sholat",
-                      style: TextStyle(
-                        fontFamily: "PoppinsSemiBold",
-                        fontSize: 14,
-                        color: ColorApp.white,
-                      )),
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/jadwal-sholat');
+                },
+                child: Column(
+                  children: [
+                    Image.asset("assets/images/ic_menu_jadwal_sholat.png"),
+                    Text("Jadwal Sholat",
+                        style: TextStyle(
+                          fontFamily: "PoppinsSemiBold",
+                          fontSize: 14,
+                          color: ColorApp.white,
+                        )),
+                  ],
+                ),
               ),
             ],
           ),
