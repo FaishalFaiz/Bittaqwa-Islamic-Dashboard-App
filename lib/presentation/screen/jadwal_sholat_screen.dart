@@ -116,7 +116,7 @@ class _JadwalSholatScreenState extends State<JadwalSholatScreen> {
       appBar: AppBar(
         backgroundColor: ColorApp.primary,
         title: Text(
-          "Doa-Doa",
+          "Jadwal Sholat",
           style: TextStyle(
             fontFamily: "PoppinsMedium",
             color: ColorApp.white,

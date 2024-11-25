@@ -133,6 +133,9 @@ class Dashboard extends StatelessWidget {
                 width: 12,
               ),
               GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/video-kajian');
+                },
                 child: Column(
                   children: [
                     Image.asset("assets/images/ic_menu_video_kajian.png"),
