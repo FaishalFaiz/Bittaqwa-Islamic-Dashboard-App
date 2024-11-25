@@ -16,8 +16,8 @@ This project relies on the following dependencies:
 - `geocoding: ^3.0.0`
 - `permission_handler: ^11.3.1`
 
-For the shalat schedule API, i used parsed api from lakuapik :
-https://github.com/lakuapik/jadwalsholatorg
+For the shalat schedule API, i API from myquran.com :
+https://api.myquran.com
 
 
 ### Assets
