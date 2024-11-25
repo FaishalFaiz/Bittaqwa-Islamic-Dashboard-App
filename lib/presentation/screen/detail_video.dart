@@ -115,7 +115,7 @@ class _DetailVideoState extends State<DetailVideo> {
                 style: TextStyle(
                   fontFamily: 'PoppinsSemiBold',
                   color: Colors.black,
-                  fontSize: 16,ss
+                  fontSize: 16,
                 ),
               ),
             ),
