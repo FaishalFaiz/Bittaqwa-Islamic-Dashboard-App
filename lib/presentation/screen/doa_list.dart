@@ -50,7 +50,12 @@ class DoaListScreen extends StatelessWidget {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailDoa(),
+                    builder: (context) => DetailDoa(
+                      title: doaList[index]["title"]!,
+                      arabicText: doaList[index]["arabicText"]!,
+                      translation: doaList[index]["translation"]!,
+                      reference: doaList[index]["reference"]!,
+                    ),
                   )),
               leading: Image.asset("${doaList[index]["image"]}"),
               title: Text(
